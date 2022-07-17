@@ -1,0 +1,156 @@
+#window{
+    box-sizing: content-box;
+    border-radius: 20px;
+    align-content: center;
+    padding: 15px;
+    background-color: RGB(165, 160, 156);
+    margin-top: 50px;
+    border-width: medium;
+}
+.background{
+    background-color:RGB(225, 219, 206);
+}
+.login {
+    border-radius: 10px;
+}
+.swapbox_select{
+    width: 40%;
+    float: left;
+}
+.Swapbox{
+    border: 1.5px solid black;
+    border-radius: 20px;
+    background-color: rgb(228, 220, 224);
+    padding: 20px 20px;
+    margin: 20px 0;
+    min-height: 100px;
+    overflow: auto;
+    align-items: center;
+}
+
+.token_select{
+    padding: 5px;
+    border-radius: 20px;
+    width: fit-content;
+    min-width: 150px;
+    min-height: 50px;
+    margin-right: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#form {
+    width: 100%;
+}
+
+#swap_button {
+    border-radius: 20px;
+    width: 60%;
+    position: relative;
+    left: 20%
+    /* background-color:RGB(228, 220, 224); */
+}
+
+.token_select:hover{
+    background-color:rgba(90, 88, 88, 0.085);
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.show {
+    display:block;
+}
+.token_list_img, .token_image{
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+}
+
+.token_image, .token_text {
+    display: inline-block;
+}
+
+#to_token_select, #from_token_select {
+    font-weight: bold;
+    border: black solid 1.5px;
+    text-align: center;
+}
+
+.modal-body{
+    height: 600px;
+    overflow: overlay;
+    padding: 0%;
+    background-color:transparent;
+}
+.token_row{
+    padding: 5px 10px;
+}
+
+.token_row:hover{
+    padding: 5px 10px;
+    background-color:rgb(153, 152, 152);
+    cursor: pointer;
+    width: 40px 40px;
+}
+.modal-header {
+    padding: 25px;
+    background-color: rgb(90, 90, 90);
+}
+.swapbox_title {
+    text-align: center;
+    /* background-color: RGB(228, 220, 224); */
+}
+
+.amount {
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.1rem solid darkgray;
+    outline: none;
+    right: 20px;
+    size: a3;
+    position: absolute;
+    width: 60%;
+    min-height: 50px;
+    text-align: right;
+    letter-spacing: 1px;
+    margin-right: 20px;
+}
+.search {
+    width: 140px;
+    top: 10px;
+    position: absolute;
+    left: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.1rem solid darkgray;
+    outline: none;
+}
+.close {
+    position: absolute;
+    cursor: pointer;
+    color: black;
+    top: 10px;
+    right: 10px;
+}
+.modal-title {
+    object-position: center;
+    left: 200px;
+    position: absolute;
+    top: 10px;
+}
+.swapbox_select .token_select{
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+}

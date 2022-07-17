@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> DEX </title>
+    <!-- <script src="main.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <!-- firebase sdk sakums-->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBNc1LQqtYqC4vrbuRZMkpOxBE_m1RvbnI",
+        authDomain: "launchpad-a1f82.firebaseapp.com",
+        projectId: "launchpad-a1f82",
+        storageBucket: "launchpad-a1f82.appspot.com",
+        messagingSenderId: "673882517643",
+        appId: "1:673882517643:web:3ccd78f48face0d804248e",
+        measurementId: "G-X2HP772VHH"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+
+    <!-- firebase sdk beigas -->
+  </head>
+
+  <body class="background">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:RGB(126, 147, 146)!important;">
+        <a class="navbar-brand" href="#">HOME<span class="sr-only">(current)</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="dex.html">DEX <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                <a class="nav-link" href="launchpad.html">LaunchPad <span class="sr-only"></span></a>
+              </li>
+          </ul>
+        <button class="login" id="btn-login" class="btn btn-outline-primary my-2 my-sm-0" type="submit" onclick="login()">Sign in with MetaMask</button>
+        </div>
+      </nav>
+      <div width="100%">
+        <h1 style="text-align:center">Homepage</h1>
+      </div>
