@@ -7,33 +7,29 @@ let currentSelectSide;
 let tokens = [];
 let currentUser;
 let initialToken;
-let metamaskProvider;
 
-async function init(){
+async function init() {
     await Moralis.initPlugins();
-    metamaskProvider = await detectEthereumProvider();
-    console.log(metamaskProvider);
-   // await Moralis.enable();
     await listAvailableTokens();
     getInitialToken();
-    if(currentUser !=null){
+    if(currentUser != null){
         document.getElementById("swap_button").disabled = false
     }
  }
 
 document.getElementById("from_amount").addEventListener("input", () => {
     let value = document.getElementById("from_amount").value;
-    if(value.includes(",")) {
+    if (value.includes(",")) {
         value = value.replaceAll(",", ".");
         document.getElementById("from_amount").value = value;
     }
  });
 
- function getInitialToken() {
+function getInitialToken() {
     let parent = document.getElementById("from_token_select");
-    for ( const address in tokens ) {
+    for (const address in tokens) {
         let token = tokens[address];
-        if(token.symbol == "BNB") {
+        if(token.symbol == "ETH") {
             initialToken = token;
             html = `
                 <img class= "token_list_img" src="${token.logoURI}">
@@ -44,18 +40,11 @@ document.getElementById("from_amount").addEventListener("input", () => {
             break;
         }
     }
-    // let parent = document.getElementById("from_token_select");
-    // parent.innerHTML = "";
-    // div = `
-    // <img class= "token_list_img" src="${initialToken.logoURI}">
-    // <span class="token_image" id="from_token_text">${initialToken.symbol}</span>
-    // `;
-    // parent.innerHTML = div;
  }
 
 async function listAvailableTokens(){
     const result = await Moralis.Plugins.oneInch.getSupportedTokens({   
-        chain: 'bsc',// The blockchain you want to use (eth/bsc/polygon)
+        chain: 'eth',// The blockchain you want to use (eth/bsc/polygon)
     });
     tokens = result.tokens;
     let parent = document.getElementById("token_list"); 
@@ -73,10 +62,10 @@ async function listAvailableTokens(){
         parent.appendChild(div);
     }
 }
- function selectToken(address){
+function selectToken(address){
     closeModal();
-    //let address = event.target.getAttribute("data-address");
-    //console.log(tokens);
+    // let address = event.target.getAttribute("data-address");
+    // console.log(tokens);
     currentTrade[currentSelectSide] = tokens[address];
     console.log(currentTrade);
     renderInterface();
@@ -114,39 +103,47 @@ function renderInterface(){
         // document.getElementById("to_token_text").innerHTML= currentTrade.to.symbol;
     }
 }
-/** Add from here down */
+
+// chain switch beig
 // metamask login
  async function login() {
      try {
-        //  currentUser = Moralis.authenticate();
+        if(!currentUser){
+            document.getElementById("swapbox_title").innerHTML =
+                "swap";
+        }
          if(!currentUser){
 
-            currentUser = await Moralis.Web3.authenticate({signingMessage:"Welcome to DEX!", chainId: 56});
+// https://ethereum.stackexchange.com/questions/120733/how-to-indicate-default-connection-to-open-ethereum-network-popup-in-metamask
+// https://docs.metamask.io/guide/rpc-api.html#unrestricted-methods
+// https://docs.metamask.io/guide/ethereum-provider.html#methods
+// https://stackoverflow.com/questions/68252365/how-to-trigger-change-blockchain-network-request-on-metamask
+
+            if(window.ethereum) {
+                // TODO: (1) wallet_addEthereumChain"
+                await ethereum.request({method: "wallet_switchEthereumChain",
+                params: [
+                    {chainId: "0x1"}
+                ]});
+            } else {
+                alert('MetaMask is not installed. Please consider installing it: https://metamask.io/download.html');
+            }
+            currentUser = await Moralis.Web3.authenticate({signingMessage:"Welcome to DEX!"});
+            console.log(currentUser);
             document.getElementById("btn-login").innerHTML =
                 "Connected";
          }
-         document.getElementById("swap_button").disabled = false
+        document.getElementById("swap_button").disabled = false
      } catch (error){
-         console.log(error)
+        //  console.log(error)
      }
-//nezinu vai ir vajadzīgs
-//    let user = Moralis.User.current();
-//    if (!currentUser) {
-//      try {
-//          user = await Moralis.authenticate({ signingMessage: "Hello!" })
-//          console.log(user)
-//          console.log(user.get('bscAddress'))
-//      } catch(error) {
-//          console.log(error)
-//      }
-//    }
   }
 //metamask login beigas
-//metamask logout sakums
-async function logOut() {
-  await Moralis.User.logOut();
-  console.log("logged out");
-}
+
+//metamask logout sakums (iespējams nav vajadzīgs)
+// async function logOut() {
+//   await Moralis.User.logOut();
+//}
 //metamask logout beigas lkm
 
 function openModal(side){
@@ -164,8 +161,6 @@ function searchForToken() {
         if (event.key === "Enter") {
           // Cancel the default action, if needed
           event.preventDefault();
-          // Trigger the button element with a click
-          //document.getElementById("myBtn").click();
           let parent = document.getElementById("token_list");
           if(inputField.value != null && inputField.value != "") {
             let value = inputField.value.toLowerCase();
@@ -211,6 +206,8 @@ function searchForToken() {
     
 }
 //Modal search beigas
+
+// amount sakums
 async function getQuote(){
     if(!currentTrade.from || !currentTrade.to || !document.getElementById("from_amount").value) return;
 
@@ -219,7 +216,7 @@ async function getQuote(){
     );
 
     const quote = await Moralis.Plugins.oneInch.quote({
-        chain: 'bsc', // The blockchain you want to use (eth/bsc/polygon)
+        chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
         fromTokenAddress: currentTrade.from.address, // The token you want to swap
         toTokenAddress: currentTrade.to.address, // The token you want to receive
         amount: amount,
@@ -228,15 +225,16 @@ async function getQuote(){
 //    document.getElementById("gas_estimate").innerHTML =  quote.estimatedGas / (10**quote.toToken.decimals);
     document.getElementById("to_amount").value = quote.toTokenAmount / (10**quote.toToken.decimals);
 }
-
+// amount beigas
+// swap funckijas sakums
 async function trySwap() {
-    let address = Moralis.user.current().get("bscAdress");
+    let address = Moralis.user.current().get("ethAdress");
     let amount = Number(
         document.getElementById("from_amount").value * 10**currentTrade.from.decimals 
     );
-    if (currentTrade.from.symbol === "BSC") {
+    if (currentTrade.from.symbol === "ETH") {
         const allowance = await Moralis.Plugins.oneInch.hasAllowance({
-            chain: 'bsc', // The blockchain you want to use (eth/bsc/polygon)
+            chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
             fromTokenAddress: currentTrade.from.address, // The token you want to swap
             fromAddress: address, // Your wallet address
             amount: amount,
@@ -244,7 +242,7 @@ async function trySwap() {
         console.log(allowance);
         if (allowance >= amount){
             await Moralis.Plugins.oneInch.approve({
-            chain: 'bsc', // The blockchain you want to use (eth/bsc/polygon)
+            chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
             tokenAddress: currentTrade.from.address, // The token you want to swap
             fromAddress: address, // Your wallet address 
         });
@@ -255,10 +253,10 @@ async function trySwap() {
     alert("Swap Complete");
 
 }
-
+// swap funkcijas beigas
 async function doSwap(userAdress, amount) {
     return await  Moralis.Plugins.oneInch.swap({
-      chain: 'bsc', // The blockchain you want to use (eth/bsc/polygon)
+      chain: 'eth', // The blockchain you want to use (eth/bsc/polygon)
       fromTokenAddress: currentTrade.from.address, // The token you want to swap
       toTokenAddress: currentTrade.to.address, // The token you want to receive
       amount: amount,
@@ -266,8 +264,29 @@ async function doSwap(userAdress, amount) {
       slippage: 1,
     });
   }
+// swap funkcijas beigas
 
+// switch tokens sakums
+function switchToken() {
+    var token2 = document.getElementById("from_token_select").innerHTML;
+    var token1 = document.getElementById("to_token_select").innerHTML;
 
+    var value1 = document.getElementById("from_amount").value;
+    var value2 = document.getElementById("to_amount").value;
+
+    document.getElementById("from_token_select").innerHTML="";
+    document.getElementById("to_token_select").innerHTML="";
+
+    document.getElementById("from_amount").value = "";
+    document.getElementById("to_amount").value = "";
+
+    document.getElementById("from_token_select").innerHTML=token1;
+    document.getElementById("to_token_select").innerHTML=token2;
+
+    document.getElementById("from_amount").value = value2;
+    document.getElementById("to_amount").value = value1;
+    }
+// switch tokens beigas
 init();
 
 // When the user clicks anywhere outside of the modal, close it
@@ -283,11 +302,9 @@ document.getElementById("from_token_select").onclick = (() => {
 document.getElementById("to_token_select").onclick = (() => {
     openModal("to");
 });
-//document.getElementById("to_token_select").onclick = () => openModal("to");
-// document.getElementById("login_button").onclick = login;
 document.getElementById("from_amount").onblur = getQuote;
 document.getElementById("swap_button").onclick = trySwap;
-
+document.getElementById("switch_button").onclick = switchToken;
 document.getElementById("token-search-input").onclick = searchForToken;
 
 

@@ -9,34 +9,24 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
-    <!-- firebase sdk sakums-->
     <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-analytics.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js';
       const firebaseConfig = {
-        apiKey: "AIzaSyBNc1LQqtYqC4vrbuRZMkpOxBE_m1RvbnI",
-        authDomain: "launchpad-a1f82.firebaseapp.com",
-        projectId: "launchpad-a1f82",
-        storageBucket: "launchpad-a1f82.appspot.com",
-        messagingSenderId: "673882517643",
-        appId: "1:673882517643:web:3ccd78f48face0d804248e",
-        measurementId: "G-X2HP772VHH"
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
+          apiKey: "AIzaSyBNc1LQqtYqC4vrbuRZMkpOxBE_m1RvbnI",
+          authDomain: "launchpad-a1f82.firebaseapp.com",
+          projectId: "launchpad-a1f82",
+          storageBucket: "launchpad-a1f82.appspot.com",
+          messagingSenderId: "673882517643",
+          appId: "1:673882517643:web:3ccd78f48face0d804248e",
+          measurementId: "G-X2HP772VHH"
+        };
+        const app = initializeApp(firebaseConfig);
     </script>
-
-    <!-- firebase sdk beigas -->
+    <!-- <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min'></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style_index.css">
   </head>
 
   <body class="background">
@@ -48,15 +38,37 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                <a class="nav-link" href="dex.html">DEX <span class="sr-only"></span></a>
+                <a class="nav-link" href="swap.html">Swap <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                 <a class="nav-link" href="launchpad.html">LaunchPad <span class="sr-only"></span></a>
               </li>
+              <div class="anti-phishing" id="window">
+                <p class="anti-phishing">Beware of antiphising, make sure you are in https:pagepagepage.com</p>
+              <div>
           </ul>
-        <button class="login" id="btn-login" class="btn btn-outline-primary my-2 my-sm-0" type="submit" onclick="login()">Sign in with MetaMask</button>
         </div>
       </nav>
       <div width="100%">
-        <h1 style="text-align:center">Homepage</h1>
+        <!-- <h1 style="text-align:center">Homepage</h1> -->
+
+        <div class="container">
+          <div class="row">
+              <!-- <div class="anti-phishing" id="window">
+                <h5 class="swapbox_title">Beware of antiphising, make sure you are in https:pagepagepage.com</h5>
+              </div> -->
+          </div>
+
       </div>
+    </body>
+  <footer>
+    <a href="https://www.twitter.com/"; onClick="window.open(this.href);return false;">
+      <img alt="twitter" src="https://toppng.com/uploads/preview/twitter-icon-transparent-11549680383mmzgiol88v.png"
+      width="40" height="40">
+    </a>
+    <a href="https://www.discord.com/"; onClick="window.open(this.href);return false;">
+      <img alt="discord" src="https://mpng.subpng.com/20180421/fsq/kisspng-discord-computer-icons-logo-user-5adb6eb470b210.1996480115243301644616.jpg"
+      width="40" height="40">
+    </a>
+  </footer>
+</html>

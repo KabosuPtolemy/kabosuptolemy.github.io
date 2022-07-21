@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style_lp.css">
   </head>
 
   <body class="background">
@@ -22,7 +22,7 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                <a class="nav-link" href="dex.html">DEX<span class="sr-only"></span></a>
+                <a class="nav-link" href="swap.html">Swap<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                 <a class="nav-link" href="launchpad.html">LaunchPad <span class="sr-only"></span></a>
@@ -33,4 +33,40 @@
       </nav>
       <div width="100%">
         <h1 style="text-align:center;">LaunchPad</h1>
+        <div class="listed_project">
+          <div class="project" id="project">
+            <header>
+              <h3 id="project_title">Find Monkey</h3>
+            </header>
+              <img class="project_img" id="project_img" src="https://play-lh.googleusercontent.com/GEs1zwfkC8RszWxb_BC-t3s4nLEeKQ_YgGc1lQ8YXOj8EheCNSk63J98L7xZ2buPO1q6=w240-h480-rw" alt="monkey">
+            <section id="project_datas">
+              <h6 id="project_des">Find and own every monkey on earth</h6>
+              <h6 id="project_is">Total mints - 3k</h6>
+              <h6 id="project_is">Floor price - 1BNB</h6>
+            </section>
+            <aside id="project_datah">
+              <h6 id="project_ih">Hard Data</h6>
+              <h6 id="project_ih">Hard Data</h6>
+              <h6 id="project_ih">Hard Data</h6>
+            </aside>
+            <footer>
+              <button disabled class="btn btn-large btn-primary btn-block" class="mint" id="mint" onclick="mintNFT()"><h5>mint</h5></button>
+            </footer>
+          </div>
+        <div class="project" id="project">
+          <img class="project_img" id="project_img" src="https://nftnow.com/wp-content/uploads/2022/03/Screen-Shot-2022-03-09-at-1.52.32-PM.png" alt="punk">
+            <h3 id="project_title">Find Satoshi</h3>
+            <container id="project_datas">
+              <h6 id="project_des">Do quests and get things</h6>
+              <h6 id="project_is">Total mints - 10k</h6>
+              <h6 id="project_is">Floor price - 3BNB</h6>
+            </container>
+            <container id="project_datah">
+              <h6 id="project_ih">Hard Data</h6>
+              <h6 id="project_ih">Hard Data</h6>
+              <h6 id="project_ih">Hard Data</h6>
+            </container>
+            <button disabled class="btn btn-large btn-primary btn-block" class="mint" id="mint" onclick="mintNFT()"><h5>mint</h5></button>
+        </div>
+        </div>
       </div>

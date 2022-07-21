@@ -1,0 +1,16 @@
+.background{
+    background-color:RGB(225, 219, 206);
+}
+#window{
+    position: relative;
+    background-position-y: center;
+    background-position-x: center;
+    left: 100%;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.footer{
+    float: left;
+    position: relative;
+    margin-bottom: 0%;
+}
